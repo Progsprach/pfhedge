@@ -10,7 +10,7 @@ def classical_model_params(n_parameters: int, in_features: int, out_features: in
         return [int((n_parameters-out_features)/(in_features+out_features+1))]
     if n_parameters <= 90:
         n_layers = 2
-    if n_parameters <= 200:
+    elif n_parameters <= 200:
         n_layers = 3
     if n_parameters > 200:
         n_layers = int(log10(n_parameters/2))+1
