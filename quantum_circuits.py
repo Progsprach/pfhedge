@@ -17,12 +17,12 @@ class SimpleQuantumCircuit(QuantumCircuit):
             raise ValueError("Invalid number of measurements")
         self.n_inputs = n_qubits
         self.n_outputs = n_measurements
-        dev = qml.device('default.qubit.jax', wires=n_qubits)
+        dev = qml.device('orquestra.qiskit', wires=n_qubits, backend='aqt.backends.aqt_innsbruck')
+        #dev = qml.device('default.qubit.jax', wires=n_qubits)
         self.weight_shape = (n_layers,n_qubits)
         self.qnode = self._make_qnode(n_qubits,dev,n_measurements)
     def _make_qnode(self, n_qubits, dev, n_measurements):
-        @jax.jit
-        @qml.qnode(dev, interface='jax', shots=None, diff_method='best')
+        @qml.qnode(dev, interface='torch', shots=None, diff_method='best')
         def qnode(inputs, weights):
             qml.AngleEmbedding(inputs, wires=range(n_qubits))
             qml.BasicEntanglerLayers(weights, wires=range(n_qubits))
