@@ -1,5 +1,5 @@
 import torch
-from pfhedge.instruments import BaseDerivative
+from . import BaseDerivative
 def add_cap_clause(der, barrier):
     strike = der.strike
     if der.call:

@@ -5,7 +5,7 @@ import pytest
 import torch
 from torch.testing import assert_close
 from pfhedge.instruments import BrownianStock,EuropeanOption
-from clauses import add_cap_clause,add_knockin_clause,add_knockout_clause
+from pfhedge.instruments.clauses import add_cap_clause,add_knockin_clause,add_knockout_clause
 class TestClauses:
 
     @classmethod

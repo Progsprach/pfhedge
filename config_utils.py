@@ -39,7 +39,7 @@ from quantum_circuits import (
     ReuploadingQuantumCircuit,
 )
 
-from clauses import add_cap_clause, add_knockin_clause, add_knockout_clause
+from pfhedge.instruments.clauses import add_cap_clause, add_knockin_clause, add_knockout_clause
 from cost_functions import CostFunction,ZeroCostFunction,RelativeCostFunction,AbsoluteCostFunction,MixedCostFunction
 
 def dict_without_keys(dictionary: dict, *args: tuple[str]):
