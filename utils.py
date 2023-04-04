@@ -2,7 +2,7 @@ from typing import List,Union
 from pfhedge.instruments import BaseDerivative, EuropeanOption, EuropeanBinaryOption, AmericanBinaryOption, LookbackOption, MultiDerivative
 from pfhedge.instruments import VarianceSwap, AsianOption, EuropeanForwardStartOption
 from pfhedge.nn import BlackScholes
-from cost_functions import CostFunction
+from pfhedge.cost_functions import CostFunction
 def black_scholes_implemented(derivative: BaseDerivative):
     if derivative.__class__ == MultiDerivative:
         impl = [black_scholes_implemented(der) for der in derivative.derivatives]

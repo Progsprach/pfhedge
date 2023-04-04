@@ -4,7 +4,7 @@ from typing import Union
 import pytest
 import torch
 
-from cost_functions import RelativeCostFunction
+from pfhedge.cost_functions import RelativeCostFunction
 from pfhedge.instruments import BrownianStock
 from pfhedge.instruments import EuropeanOption
 from pfhedge.nn import BlackScholes

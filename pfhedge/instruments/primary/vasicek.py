@@ -12,7 +12,7 @@ from pfhedge._utils.typing import TensorOrScalar
 from pfhedge.stochastic import generate_vasicek
 
 from .base import BasePrimary
-from cost_functions import CostFunction, ZeroCostFunction
+from pfhedge.cost_functions import CostFunction, ZeroCostFunction
 
 class VasicekRate(BasePrimary):
     r"""A rate which follow the Vasicek model.

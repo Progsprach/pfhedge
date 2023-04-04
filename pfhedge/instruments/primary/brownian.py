@@ -13,7 +13,7 @@ from pfhedge._utils.typing import TensorOrScalar
 from pfhedge.stochastic import generate_geometric_brownian
 
 from .base import BasePrimary
-from cost_functions import CostFunction, ZeroCostFunction
+from pfhedge.cost_functions import CostFunction, ZeroCostFunction
 
 
 class BrownianStock(BasePrimary):

@@ -19,7 +19,7 @@ from pfhedge._utils.typing import TensorOrScalar
 from ..base import BaseInstrument
 from ..primary.base import BasePrimary
 
-from cost_functions import CostFunction, ZeroCostFunction
+from pfhedge.cost_functions import CostFunction, ZeroCostFunction
 
 T = TypeVar("T", bound="BaseDerivative")
 Clause = Callable[[T, Tensor], Tensor]

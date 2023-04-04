@@ -11,7 +11,7 @@ from pfhedge.nn.functional import ww_width, ww_width_abs, ww_mixed_batch
 from pfhedge.instruments import MultiDerivative
 
 from .bs.black_scholes import BlackScholes
-from cost_functions import ZeroCostFunction, RelativeCostFunction, AbsoluteCostFunction, MixedCostFunction
+from pfhedge.cost_functions import ZeroCostFunction, RelativeCostFunction, AbsoluteCostFunction, MixedCostFunction
 
 class WhalleyWilmott(Module):
     r"""Creates a module for Whalley-Wilmott's hedging strategy.

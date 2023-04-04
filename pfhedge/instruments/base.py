@@ -8,7 +8,7 @@ from typing import no_type_check
 
 import torch
 from torch import Tensor
-from cost_functions import CostFunction
+from pfhedge.cost_functions import CostFunction
 
 T = TypeVar("T", bound="BaseInstrument")
 

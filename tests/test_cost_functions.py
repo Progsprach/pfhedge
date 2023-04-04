@@ -2,7 +2,7 @@ import pytest
 import torch
 from torch.testing import assert_close
 
-from cost_functions import ZeroCostFunction,RelativeCostFunction,AbsoluteCostFunction,MixedCostFunction
+from pfhedge.cost_functions import ZeroCostFunction,RelativeCostFunction,AbsoluteCostFunction,MixedCostFunction
 class TestCostFunctions:
 
     @classmethod

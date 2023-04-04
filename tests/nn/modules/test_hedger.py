@@ -19,7 +19,7 @@ from pfhedge.nn import Hedger
 from pfhedge.nn import MultiLayerPerceptron
 from pfhedge.nn import Naked
 from pfhedge.nn import WhalleyWilmott
-from cost_functions import ZeroCostFunction, RelativeCostFunction
+from pfhedge.cost_functions import ZeroCostFunction, RelativeCostFunction
 
 
 def void(*args, **kwargs):

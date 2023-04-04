@@ -12,7 +12,7 @@ from pfhedge._utils.typing import TensorOrScalar
 from pfhedge.stochastic import generate_heston, generate_jumps
 
 from .base import BasePrimary
-from cost_functions import CostFunction, ZeroCostFunction
+from pfhedge.cost_functions import CostFunction, ZeroCostFunction
 
 class HestonJumpStock(BasePrimary):
     r"""A stock of which spot price and variance follow a Heston process with independent Poisson-distributed jumps added to spot.

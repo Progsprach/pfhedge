@@ -20,7 +20,7 @@ from pfhedge.nn.functional import realized_variance
 from pfhedge.nn.functional import realized_volatility
 from pfhedge.nn.functional import topp
 from pfhedge.nn.functional import value_at_risk
-from cost_functions import RelativeCostFunction
+from pfhedge.cost_functions import RelativeCostFunction
 
 
 def test_exp_utility(device: Optional[Union[str, torch.device]] = "cpu"):

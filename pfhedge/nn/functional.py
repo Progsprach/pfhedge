@@ -17,7 +17,7 @@ from scipy.optimize import fsolve
 import pfhedge.autogreek as autogreek
 from pfhedge._utils.bisect import bisect
 from pfhedge._utils.typing import TensorOrScalar
-from cost_functions import CostFunction
+from pfhedge.cost_functions import CostFunction
 
 
 def european_payoff(input: Tensor, call: bool = True, strike: float = 1.0) -> Tensor:

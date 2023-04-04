@@ -10,7 +10,7 @@ from pfhedge.instruments import EuropeanOption
 from pfhedge.instruments import LookbackOption
 from pfhedge.nn import Hedger
 from pfhedge.nn import WhalleyWilmott
-from cost_functions import RelativeCostFunction
+from pfhedge.cost_functions import RelativeCostFunction
 
 class TestWhalleyWilmott:
     def test_repr(self):

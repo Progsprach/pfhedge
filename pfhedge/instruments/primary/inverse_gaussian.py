@@ -12,7 +12,7 @@ from pfhedge._utils.typing import TensorOrScalar
 from pfhedge.stochastic import generate_inverse_gaussian
 
 from .base import BasePrimary
-from cost_functions import CostFunction, ZeroCostFunction
+from pfhedge.cost_functions import CostFunction, ZeroCostFunction
 
 class InverseGaussianStock(BasePrimary):
     r"""A stock whose spot follows the Inverse Gaussian process.

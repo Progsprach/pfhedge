@@ -12,7 +12,7 @@ from pfhedge._utils.typing import TensorOrScalar
 from pfhedge.stochastic import generate_variance_gamma
 
 from .base import BasePrimary
-from cost_functions import CostFunction, ZeroCostFunction
+from pfhedge.cost_functions import CostFunction, ZeroCostFunction
 
 class VarianceGammaStock(BasePrimary):
     r"""A stock whose spot follows the Variance Gamma process.
