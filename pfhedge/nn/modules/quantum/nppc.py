@@ -6,8 +6,8 @@ from torch.nn import Linear
 from torch.nn import Sequential
 from torch.nn import Identity
 
-from jaxlayer import JaxLayer
-from quantum_circuits import QuantumCircuit
+from .jaxlayer import JaxLayer
+from .circuits import QuantumCircuit
 
 class NoPreprocessingCircuit(Sequential):
     """Variational quantum circuit with classical postprocessing layer."""

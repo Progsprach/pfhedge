@@ -2,7 +2,7 @@ from torch.nn import Module
 from torch.nn import ReLU
 from torch.nn import Identity
 from .mlh import MultiLayerHybrid
-from quantum_circuits import QuantumCircuit
+from .circuits import QuantumCircuit
 
 class PreprocessingCircuit(MultiLayerHybrid):
     """Variational quantum circuit with classical pre- and postprocessing layers."""

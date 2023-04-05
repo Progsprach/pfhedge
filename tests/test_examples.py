@@ -12,7 +12,7 @@ from pfhedge.nn import Hedger
 from pfhedge.nn import MultiLayerPerceptron
 from pfhedge.nn import WhalleyWilmott
 from pfhedge.nn import MultiLayerHybrid
-from quantum_circuits import SimpleQuantumCircuit
+from pfhedge.nn import SimpleQuantumCircuit
 
 
 def test_net(device: Optional[Union[str, torch.device]] = "cpu"):

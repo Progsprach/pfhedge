@@ -1,6 +1,6 @@
 import pytest
 import torch
-from quantum_circuits import QuantumCircuit, SimpleQuantumCircuit, ReuploadingQuantumCircuit
+from pfhedge.nn import QuantumCircuit, SimpleQuantumCircuit, ReuploadingQuantumCircuit
 import jax.numpy as jnp
 
 def test_simple_quantum_circuit():

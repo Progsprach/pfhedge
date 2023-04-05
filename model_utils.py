@@ -6,8 +6,8 @@ from pfhedge.nn import MultiLayerHybrid
 from pfhedge.nn import ConstantLayer
 from pfhedge.nn import PreprocessingCircuit
 from pfhedge.nn import NoPreprocessingCircuit
-from jaxlayer import JaxLayer
-from quantum_circuits import SimpleQuantumCircuit, ReuploadingQuantumCircuit
+from pfhedge.nn import JaxLayer
+from pfhedge.nn import SimpleQuantumCircuit, ReuploadingQuantumCircuit
 def classical_model_params(n_parameters: int, in_features: int, out_features: int = 1):
     if n_parameters <= 30:
         return [int((n_parameters-out_features)/(in_features+out_features+1))]

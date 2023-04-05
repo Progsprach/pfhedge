@@ -10,10 +10,10 @@ from torch.nn import Linear
 from torch.nn import Module
 from torch.nn import ReLU
 from torch.nn import Sequential
-from quantum_circuits import QuantumCircuit
+from .circuits import QuantumCircuit
 
 
-from jaxlayer import JaxLayer
+from .jaxlayer import JaxLayer
 
 class MultiLayerHybrid(Sequential):
     """Multi layer perceptron with additional variational quantum circuit layer."""

@@ -32,9 +32,8 @@ from pfhedge.instruments import (
 from pfhedge.instruments import MultiDerivative
 from pfhedge.nn import MultiLayerHybrid
 from pfhedge.nn import NoTransactionBandNet
-from utils import list_derivative
-from utils import make_linear_volatility, make_cev_volatility, make_time_volatility
-from quantum_circuits import (
+
+from pfhedge.nn import (
     QuantumCircuit,
     SimpleQuantumCircuit,
     ReuploadingQuantumCircuit,
@@ -43,6 +42,8 @@ from quantum_circuits import (
 from pfhedge.instruments.clauses import add_cap_clause, add_knockin_clause, add_knockout_clause
 from pfhedge.cost_functions import CostFunction,ZeroCostFunction,RelativeCostFunction,AbsoluteCostFunction,MixedCostFunction
 
+from utils import list_derivative
+from utils import make_linear_volatility, make_cev_volatility, make_time_volatility
 def dict_without_keys(dictionary: dict, *args: tuple[str]):
     copy = dict()
     for key in dictionary.keys():

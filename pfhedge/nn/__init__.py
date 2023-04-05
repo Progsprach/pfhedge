@@ -22,3 +22,7 @@ from .modules.const import ConstantLayer
 from .modules.quantum.mlh import MultiLayerHybrid
 from .modules.quantum.ppc import PreprocessingCircuit
 from .modules.quantum.nppc import NoPreprocessingCircuit
+from .modules.quantum.jaxlayer import JaxLayer
+from .modules.quantum.circuits import QuantumCircuit
+from .modules.quantum.circuits import SimpleQuantumCircuit
+from .modules.quantum.circuits import ReuploadingQuantumCircuit
