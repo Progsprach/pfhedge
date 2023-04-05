@@ -4,7 +4,7 @@ import jax.numpy as jnp
 import jax
 import numpy as np
 from torch.nn.parameter import Parameter
-from jax2torch_func import j2t, t2j
+from ._jax2torch import j2t, t2j
 
 
 def make_jax_function(qnode, grad):
