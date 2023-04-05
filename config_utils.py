@@ -30,9 +30,10 @@ from pfhedge.instruments import (
     FloatingAsianOption,
 )
 from pfhedge.instruments import MultiDerivative
+from pfhedge.nn import MultiLayerHybrid
+from pfhedge.nn import NoTransactionBandNet
 from utils import list_derivative
 from utils import make_linear_volatility, make_cev_volatility, make_time_volatility
-from models import MultiLayerHybrid, NoTransactionBandNet
 from quantum_circuits import (
     QuantumCircuit,
     SimpleQuantumCircuit,

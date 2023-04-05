@@ -11,7 +11,7 @@ from pfhedge.nn import BlackScholes
 from pfhedge.nn import Hedger
 from pfhedge.nn import MultiLayerPerceptron
 from pfhedge.nn import WhalleyWilmott
-from models import MultiLayerHybrid
+from pfhedge.nn import MultiLayerHybrid
 from quantum_circuits import SimpleQuantumCircuit
 
 

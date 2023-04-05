@@ -17,3 +17,8 @@ from .modules.mlp import MultiLayerPerceptron
 from .modules.naked import Naked
 from .modules.svi import SVIVariance
 from .modules.ww import WhalleyWilmott
+from .modules.ntb import NoTransactionBandNet
+from .modules.const import ConstantLayer
+from .modules.quantum.mlh import MultiLayerHybrid
+from .modules.quantum.ppc import PreprocessingCircuit
+from .modules.quantum.nppc import NoPreprocessingCircuit

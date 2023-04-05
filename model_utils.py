@@ -2,7 +2,10 @@ from typing import List
 from math import sqrt,log10
 from torch.nn import Linear
 from pfhedge.nn import MultiLayerPerceptron
-from models import ConstantLayer, MultiLayerHybrid, PreprocessingCircuit, NoPreprocessingCircuit
+from pfhedge.nn import MultiLayerHybrid
+from pfhedge.nn import ConstantLayer
+from pfhedge.nn import PreprocessingCircuit
+from pfhedge.nn import NoPreprocessingCircuit
 from jaxlayer import JaxLayer
 from quantum_circuits import SimpleQuantumCircuit, ReuploadingQuantumCircuit
 def classical_model_params(n_parameters: int, in_features: int, out_features: int = 1):
