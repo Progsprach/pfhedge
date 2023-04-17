@@ -9,6 +9,6 @@ class ConstantLayer(Module):
         super().__init__()
         self.bias = Parameter(torch.zeros(1,))
     def forward(self, input: Tensor)-> Tensor:
-        shp = input.shape
-        output = self.bias.unsqueeze(0).unsqueeze(0)
-        return output.repeat(shp)
+        shp = list(input.shape)
+        shp[-1] = 1
+        return torch.expand_copy(self.bias,shp)
