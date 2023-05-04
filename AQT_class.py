@@ -67,7 +67,7 @@ class AQTDevice(QiskitDevice):
         # Connection to AQT
         #connect(kwargs)
         # get a provider
-        p = provider or AQTProvider("")
+        p = provider or AQTProvider(os.getenv("AQT_API_KEY",""))
         super().__init__(wires=wires, provider=p, backend=backend, shots=shots, **kwargs)
 
     def batch_execute(self, circuits):  # pragma: no cover

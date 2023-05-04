@@ -3,7 +3,6 @@ from math import sqrt,log10
 from torch.nn import Linear
 from pfhedge.nn import MultiLayerPerceptron
 from models import ConstantLayer, MultiLayerHybrid, PreprocessingCircuit, NoPreprocessingCircuit
-from jaxlayer import JaxLayer
 from quantum_circuits import SimpleQuantumCircuit, ReuploadingQuantumCircuit
 def classical_model_params(n_parameters: int, in_features: int, out_features: int = 1):
     if n_parameters <= 30:
@@ -49,10 +48,10 @@ def make_classical_model(n_parameters: int, n_features: int):
 def make_quantum_model(n_parameters:int, n_features: int):
     if n_parameters < n_features:
         circuit = SimpleQuantumCircuit(n_parameters, n_layers=1, n_measurements=1)
-        return JaxLayer(circuit)
+        return circuit.layer()
     if n_parameters < 3*n_features:
         circuit = SimpleQuantumCircuit(n_features,n_layers=int(n_parameters/n_features),n_measurements=1)
-        return JaxLayer(circuit)
+        return circuit.layer()
     if n_parameters <= 60:
         circuit = SimpleQuantumCircuit(n_features,n_layers=int((n_parameters-1)/n_features-1),n_measurements=0)
         return NoPreprocessingCircuit(circuit)

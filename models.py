@@ -11,7 +11,6 @@ from torch.nn import Module
 from torch.nn import ReLU
 from torch.nn import Sequential
 from quantum_circuits import QuantumCircuit
-from jaxlayer import JaxLayer
 
 class MultiLayerHybrid(Sequential):
     def __init__(
@@ -43,7 +42,7 @@ class MultiLayerHybrid(Sequential):
             layers.append(deepcopy(activation))
         layers.append(Linear(n_units[-1], quantum.n_inputs))
         layers.append(deepcopy(activation))
-        layers.append(JaxLayer(quantum))
+        layers.append(quantum.layer())
         layers.append(Linear(quantum.n_outputs,out_features))
         layers.append(deepcopy(out_activation))
 
@@ -100,7 +99,7 @@ class PreprocessingCircuit(MultiLayerHybrid):
 class NoPreprocessingCircuit(Sequential):
     def __init__(self,quantum: QuantumCircuit, out_features = 1, out_activation: Module = Identity()):
         layers: List[Module] = []
-        layers.append(JaxLayer(quantum))
+        layers.append(quantum.layer())
         layers.append(Linear(quantum.n_outputs,out_features))
         layers.append(deepcopy(out_activation))
         super().__init__(*layers)

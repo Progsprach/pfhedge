@@ -14,6 +14,7 @@ qiskit = "^0.42.1"
 qiskit-aqt-provider = "^0.4.3"
 seaborn = "^0.12.2"
 pennylane-qiskit = "^0.29.0"
+pyyaml = "^6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

@@ -32,7 +32,7 @@ from pfhedge.instruments import (
 from pfhedge.instruments import MultiDerivative
 from utils import list_derivative
 from utils import make_linear_volatility, make_cev_volatility, make_time_volatility
-from models import MultiLayerHybrid, NoTransactionBandNet
+from models import MultiLayerHybrid, NoTransactionBandNet, PreprocessingCircuit
 from quantum_circuits import (
     QuantumCircuit,
     SimpleQuantumCircuit,
@@ -151,6 +151,7 @@ def make_model(config: dict, n_hedges: int, derivative: BaseDerivative) -> Modul
     options = {
         "MultiLayerPerceptron": MultiLayerPerceptron,
         "MultiLayerHybrid": MultiLayerHybrid,
+        "PreprocessingCircuit": PreprocessingCircuit,
     }
     model_type = options[config.get("type", "MultiLayerPerceptron")]
     NTB = config.get("NTB", True)
@@ -161,6 +162,11 @@ def make_model(config: dict, n_hedges: int, derivative: BaseDerivative) -> Modul
             )
         else:
             n_hedges = 2
+    if model_type == PreprocessingCircuit:
+        circuit_config = config.get("circuit", {})
+        circuit = make_circuit(circuit_config)
+        cfg = dict_without_keys(config, "type", "NTB", "circuit")
+        model = MultiLayerHybrid(quantum=circuit,  **cfg)
     if model_type == MultiLayerPerceptron:
         cfg = dict_without_keys(config, "type", "NTB")
         model = model_type(out_features=n_hedges, **cfg)
