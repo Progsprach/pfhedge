@@ -21,8 +21,8 @@ class SimpleQuantumCircuit(QuantumCircuit):
             raise ValueError("Invalid number of measurements")
         self.n_inputs = n_qubits
         self.n_outputs = n_measurements
-        #dev = AQTDevice(wires=n_qubits, shots=40)
-        dev = qml.device('default.mixed', wires=n_qubits, shots=50)
+        dev = AQTDevice(wires=n_qubits, shots=40)
+        #dev = qml.device('default.mixed', wires=n_qubits, shots=50)
         #dev = qml.device('default.qubit.jax', wires=n_qubits)
         self.weight_shapes = {"weights": (n_layers, n_qubits)}
         self.qnode = self._make_qnode(n_qubits,dev,n_measurements)

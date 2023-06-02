@@ -7,14 +7,15 @@ license = "MIT"
 repository = "https://github.com/pfnet-research/pfhedge"
 
 [tool.poetry.dependencies]
-python = "^3.7.12"
+python = "^3.8.0"
 torch = "^1.9.0"
 tqdm = "^4.62.3"
-qiskit = "^0.42.1"
+qiskit = {extras = ["machine-learning"], version = "^0.43.0"}
 qiskit-aqt-provider = "^0.4.3"
 seaborn = "^0.12.2"
 pennylane-qiskit = "^0.29.0"
 pyyaml = "^6.0"
+python-dotenv = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

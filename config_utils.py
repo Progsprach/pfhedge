@@ -38,7 +38,7 @@ from quantum_circuits import (
     SimpleQuantumCircuit,
     ReuploadingQuantumCircuit,
 )
-
+from qmc_class import QiskitPreprocessing
 from clauses import add_cap_clause, add_knockin_clause, add_knockout_clause
 from cost_functions import CostFunction,ZeroCostFunction,RelativeCostFunction,AbsoluteCostFunction,MixedCostFunction
 
@@ -152,6 +152,7 @@ def make_model(config: dict, n_hedges: int, derivative: BaseDerivative) -> Modul
         "MultiLayerPerceptron": MultiLayerPerceptron,
         "MultiLayerHybrid": MultiLayerHybrid,
         "PreprocessingCircuit": PreprocessingCircuit,
+        "QiskitPreprocessing": QiskitPreprocessing,
     }
     model_type = options[config.get("type", "MultiLayerPerceptron")]
     NTB = config.get("NTB", True)
@@ -170,6 +171,9 @@ def make_model(config: dict, n_hedges: int, derivative: BaseDerivative) -> Modul
     if model_type == MultiLayerPerceptron:
         cfg = dict_without_keys(config, "type", "NTB")
         model = model_type(out_features=n_hedges, **cfg)
+    if model_type == QiskitPreprocessing:
+        cfg = dict_without_keys(config, "type", "NTB")
+        model = model_type(out_features=n_hedges, **cfg)        
     if model_type == MultiLayerHybrid:
         circuit_config = config.get("circuit", {})
         circuit = make_circuit(circuit_config)
