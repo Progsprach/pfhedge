@@ -12,7 +12,8 @@ from qiskit_aqt_provider import AQTProvider
 from qiskit.primitives import BackendEstimator
 
 def make_qiskit_layer(num_qubits,layers):
-    backend = AQTProvider(os.environ['AQT_API_KEY'])
+    provider = AQTProvider(os.environ['AQT_TOKEN'])
+    backend = provider.get_backend("aqt_qasm_simulator_noise_1")
     estimator = BackendEstimator(backend)
     feature_map = ZZFeatureMap(feature_dimension=num_qubits)
     ansatz = RealAmplitudes(num_qubits=num_qubits, reps=layers)

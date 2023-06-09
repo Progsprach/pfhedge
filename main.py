@@ -4,6 +4,6 @@ from dotenv import load_dotenv
 if __name__ == "__main__":
     load_dotenv()
     seaborn.set_style("whitegrid")
-    reader = InputReader("config.yaml")
+    reader = InputReader("config_qiskit.yaml")
     handler = reader.load_config()
     handler.full_process()
