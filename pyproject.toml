@@ -16,6 +16,8 @@ seaborn = "^0.12.2"
 pennylane-qiskit = "^0.29.0"
 pyyaml = "^6.0"
 python-dotenv = "^1.0.0"
+jax= "^0.4.7"
+jaxlib = "^0.4.7"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
