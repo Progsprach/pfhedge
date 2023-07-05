@@ -9,12 +9,14 @@ from qiskit_machine_learning.connectors import TorchConnector
 from torch.nn import Module,Linear,Identity,ReLU,Sequential
 from torch import reshape
 from qiskit_aqt_provider import AQTProvider
-from qiskit.primitives import BackendEstimator
+from qiskit_aqt_provider.primitives.estimator import AQTEstimator
+from qiskit.algorithms.gradients import ParamShiftEstimatorGradient
 
 def make_qiskit_layer(num_qubits,layers):
     provider = AQTProvider(os.environ['AQT_TOKEN'])
-    backend = provider.get_backend("aqt_qasm_simulator_noise_1")
-    estimator = BackendEstimator(backend)
+    backend = provider.get_backend("offline_simulator_noise")
+    estimator = AQTEstimator(backend)
+    grad_estimator = ParamShiftEstimatorGradient(estimator= estimator)
     feature_map = ZZFeatureMap(feature_dimension=num_qubits)
     ansatz = RealAmplitudes(num_qubits=num_qubits, reps=layers)
 
@@ -27,7 +29,8 @@ def make_qiskit_layer(num_qubits,layers):
         circuit=qc,
         input_params=feature_map.parameters,
         weight_params=ansatz.parameters,
-        input_gradients=True
+        input_gradients=True,
+        gradient=grad_estimator
     )
     return TorchConnector(qnn)
 
