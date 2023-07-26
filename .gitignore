@@ -148,3 +148,9 @@ example_*
 
 #Config file
 config.yaml
+
+# .png files 
+*.png
+
+# Backup parameters
+Backup_Params/

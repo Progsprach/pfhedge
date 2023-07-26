@@ -23,12 +23,17 @@ class SimpleQuantumCircuit(QuantumCircuit):
         dev = qml.device('default.qubit.jax', wires=n_qubits)
         self.weight_shape = (n_layers,n_qubits)
         self.qnode = self._make_qnode(n_qubits,dev,n_measurements)
+    # TODO: Adapt this function (rotation)
     def _make_qnode(self, n_qubits, dev, n_measurements):
         @jax.jit
         @qml.qnode(dev, interface='jax', shots=None, diff_method='best')
         def qnode(inputs, weights):
+            # No loop here
             qml.AngleEmbedding(inputs, wires=range(n_qubits))
+            
+            # TODO: Change this line
             qml.BasicEntanglerLayers(weights, wires=range(n_qubits))
+            # qml.BasicEntanglerLayers(weights, wires=range(n_qubits), rotation='X')
             return [qml.expval(qml.PauliZ(wires=i)) for i in range(n_measurements)]
         return qnode
 class ReuploadingQuantumCircuit(QuantumCircuit):

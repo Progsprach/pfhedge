@@ -40,15 +40,19 @@ class HedgeHandler:
         for key in dictionary.keys():
             output[key] = self.eval(dictionary[key])
         return output
-    def full_process(self):
-        history = self.fit()
+    def full_process(self, backup=False):
+        if backup:
+            print('Loading backup')
+            self.hedger.load_backup('./Backup_Params/checkpoint.pt')
+        else:
+            history = self.fit()
+            training_fig = make_training_diagram(history)
+            training_fig.savefig('trainingdiagram.png')
+            plt.close(training_fig)
         pnl = self.profit()
         bench = self.benchmark()
         print(self.eval(pnl))
         print(self.dict_eval(bench))
-        training_fig = make_training_diagram(history)
-        training_fig.savefig('trainingdiagram.png')
-        plt.close(training_fig)
         pnl_fig = make_pl_diagram(pnl)
         pnl_fig.savefig('pldiagram.png')
         plt.close(pnl_fig)
