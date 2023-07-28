@@ -44,6 +44,16 @@ class HedgeHandler:
         history = self.fit()
         pnl = self.profit()
         bench = self.benchmark()
+
+        import json
+        stream = json.dumps(self.dict_eval(bench))
+        
+        with open('./output.txt', 'w') as file:
+            file.write(str(self.eval(pnl)))
+            file.write('\n')
+            file.write(stream)
+            file.write('\n')
+
         print(self.eval(pnl))
         print(self.dict_eval(bench))
         training_fig = make_training_diagram(history)
