@@ -148,3 +148,9 @@ example_*
 
 #Config file
 config.yaml
+
+# Results
+Results/
+
+# .png files
+*.png
