@@ -1,0 +1,51 @@
+underlier:
+  cost:
+    type: RelativeCostFunction
+    cost: 1.0e-3
+  type: MertonJumpStock
+  mu: 0.0
+  sigma: 0.2
+  jump_per_year: 30
+  jump_mean: 0.0
+  jump_std: 0.1
+derivative:
+  type: LookbackOption
+  call: True
+  strike: 1.2
+  maturity: 0.4
+hedge:
+  underlier: True
+model:
+  NTB: False
+  type: MultiLayerHybrid
+  circuit:
+    type: SimpleQuantumCircuit
+    n_qubits: 5
+    n_layers: 5
+    rotation_matrix:
+      - [x, y, x, y, x]
+      - [y, x, y, x, y]
+      - [x, y, x, y, x]
+      - [y, x, y, x, y]
+      - [x, y, x, y, x]
+    # n_uploads: 3
+  n_units: 8
+  n_layers: 2
+loss:
+  type: ExpectedShortfall
+  p: 0.1
+training:
+  # backup: True
+  n_paths: 3000
+  n_epochs: 250
+  n_times: 1
+profit:
+  n_paths: 5000
+criterion:
+  type: ExpectedShortfall
+  p: 0.1
+benchmark:
+  NoHedge: True
+  WhalleyWilmott: True
+  BlackScholes: True
+
