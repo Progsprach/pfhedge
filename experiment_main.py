@@ -29,9 +29,8 @@ if __name__ == "__main__":
     }
 
     seaborn.set_style("whitegrid")
-    reader = InputReader("config.yaml")
-    # results = open('results.txt', 'w')
     results_dict = {}
+    reader = InputReader("config.yaml")
 
     folder = 'Experimental_Results'
     if not os.path.isdir(folder):
@@ -47,9 +46,6 @@ if __name__ == "__main__":
         reader.config['model']['circuit']['rotation_matrix'] = item
         print(f'Running configuration mode {key}:')
         print(reader.config['model']['circuit']['rotation_matrix'])
-        handler = reader.load_config()
-
-        # results.write(f'{key} ')
         
         for iteration in range(repeats):
             plots_folder = f'Run{iteration}'
@@ -57,14 +53,13 @@ if __name__ == "__main__":
             if not os.path.isdir(path2):
                 os.mkdir(path2)
             print(f'Starting iteration {iteration}')
+            handler = reader.load_config()
             loss = handler.full_process(path2)
             handler.stock_diagrams(5, path2)
             results_dict[key].append(loss)
 
         print()
         
-        # results.write('\n')
-
     filename = 'results.json'
 
     with open(os.path.join(folder, filename), 'w') as json_file:
