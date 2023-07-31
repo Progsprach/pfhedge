@@ -60,10 +60,12 @@ class SimpleQuantumCircuit(QuantumCircuit):
             qml.AngleEmbedding(features=inputs, wires=range(n_qubits), rotation='X')
             for i_layer, (angle_vector, rotation_vector) in enumerate(zip(weights, rotation_matrix)):
                 for j_qubit, (angle, rotation) in enumerate(zip(angle_vector, rotation_vector)):
+                    if rotation == 'x':
+                        operation = qml.RX
                     if rotation == 'y':
                         operation = qml.RY
-                    else:
-                        operation = qml.RX
+                    if rotation == 'z':
+                        operation = qml.RZ
                     operation(angle, j_qubit)
                 for k in range(n_qubits-1):
                     qml.CNOT([k, k+1])
