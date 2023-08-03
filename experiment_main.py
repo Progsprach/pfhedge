@@ -6,7 +6,7 @@ if __name__ == "__main__":
         
     n_qubits = 5
     n_layers = 5
-    repeats = 2
+    repeats = 10
     
     configurations = {
         'All x': [['x']*n_qubits]*n_layers,
