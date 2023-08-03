@@ -108,3 +108,7 @@ _set_attr_and_docstring(LookbackOption, "log_moneyness", OptionMixin.log_moneyne
 _set_attr_and_docstring(
     LookbackOption, "time_to_maturity", OptionMixin.time_to_maturity
 )
+
+
+if __name__ == '__main__':
+    pass

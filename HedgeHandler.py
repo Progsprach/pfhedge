@@ -13,7 +13,7 @@ class HedgeHandler:
         self.criterion = criterion
         self.benchmark_params = benchmark_params
     def fit(self):
-        return self.hedger.fit(self.derivative,self.hedge,**self.fit_params)
+        return self.hedger.fit(self.derivative,self.hedge, **self.fit_params)
     def profit(self):
         return self.hedger.compute_pnl(self.derivative,self.hedge,**self.profit_params)
     def benchmark(self):
@@ -40,22 +40,27 @@ class HedgeHandler:
         for key in dictionary.keys():
             output[key] = self.eval(dictionary[key])
         return output
-    def full_process(self):
+    def full_process(self, path = None):
         history = self.fit()
         pnl = self.profit()
-        bench = self.benchmark()
+        # bench = self.benchmark()
         print(self.eval(pnl))
-        print(self.dict_eval(bench))
+        # print(self.dict_eval(bench))
         training_fig = make_training_diagram(history)
-        training_fig.savefig('trainingdiagram.png')
+        if not path:
+            training_fig.savefig('trainingdiagram.png')
+        else:
+            training_fig.savefig(path)
         plt.close(training_fig)
-        pnl_fig = make_pl_diagram(pnl)
-        pnl_fig.savefig('pldiagram.png')
-        plt.close(pnl_fig)
-        for key, value in bench.items():
-            fig = make_pl_diagram(value)
-            fig.savefig(f'pl{(key[0:2].lower())}')
-            plt.close(fig)
+        # pnl_fig = make_pl_diagram(pnl)
+        # pnl_fig.savefig('pldiagram.png')
+        # plt.close(pnl_fig)
+        # for key, value in bench.items():
+        #     fig = make_pl_diagram(value)
+        #     fig.savefig(f'pl{(key[0:2].lower())}')
+        #     plt.close(fig)
+        return self.eval(pnl)
+    
     def stock_diagrams(self, number):
         self.derivative.simulate(number)
         prices = self.derivative.underlier.spot
