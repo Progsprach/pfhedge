@@ -27,7 +27,7 @@ features:
   - volatility
 training:
   n_epochs: 100
-  n_paths: 5
+  n_paths: 5 # 85
   n_times: 1
 profit:
   n_paths: 5

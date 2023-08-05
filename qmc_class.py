@@ -56,6 +56,7 @@ class QiskitPreprocessing(Module):
         input = self.linear1(input)
         input = self.activation(input)
         shp = input.shape
+        print(shp)
         input = reshape(input, (shp[0]*shp[1],shp[2]))
         input = self.qiskit(input)
         input = reshape(input, (shp[0],shp[1],-1))
