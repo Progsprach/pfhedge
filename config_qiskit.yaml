@@ -1,10 +1,8 @@
 underlier:
   type: BrownianStock
   cost:
-        type: RelativeCostFunction
-#        tolerance: 5.0e-4
-#        abscost: 1.0e-2
-        cost: 3.0e-4
+    type: RelativeCostFunction
+    cost: 3.0e-4
 derivative:
   type: EuropeanOption
   call: True
@@ -17,16 +15,16 @@ model:
   type: QiskitPreprocessing
   n_qubits: 3
   n_layers: 2
-  in_features: 3
+  in_features: 2
 loss:
   type: ExpectedShortfall
   p: 0.1
 features:
   - log_moneyness
   - time_to_maturity
-  - volatility
+  # - volatility
 training:
-  n_epochs: 100
+  n_epochs: 2
   n_paths: 5 # 85
   n_times: 1
 profit:
