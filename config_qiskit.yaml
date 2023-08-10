@@ -7,14 +7,14 @@ derivative:
   type: EuropeanOption
   call: True
   strike: 1.1
-  maturity: 0.03
+  maturity: 0.035
 hedge:
   underlier: True
 model:
   NTB: False
   type: QiskitPreprocessing
-  n_qubits: 3
-  n_layers: 2
+  n_qubits: 4
+  n_layers: 9
   in_features: 2
 loss:
   type: ExpectedShortfall
@@ -25,7 +25,7 @@ features:
   # - volatility
 training:
   n_epochs: 2
-  n_paths: 5 # 85
+  n_paths: 17 # 85
   n_times: 1
 profit:
   n_paths: 5

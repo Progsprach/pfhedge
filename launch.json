@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Python: Current File",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal",
+        "stopOnEntry": false,
+        "pythonPath": "${config:python.pythonPath}",
+        "justMyCode": false,  // Set "Just My Code" to false
+        "env": {},
+        "envFile": "${workspaceFolder}/.env",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "preLaunchTask": null,
+        "postDebugTask": null,
+        "showReturnValue": false,
+        "exceptionHandling": {
+          "autocatch": true,
+          "breakMode": "always",
+          "breakOnUnhandledRejections": false
+        },
+        "maxChildren": 32,
+        "stopOnError": true,
+        "showAsyncStacks": true,
+        "smartStep": true,
+        "useWebView": false,
+        "launchOptions": {
+          "cwd": "${workspaceFolder}"
+        },
+        "interactive": true
+      }
+    ]
+  }
+  
