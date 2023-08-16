@@ -156,3 +156,6 @@ Results/
 *.png
 
 testing*
+
+# vscode .json files
+.vscode/

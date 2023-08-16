@@ -16,7 +16,7 @@ def make_qiskit_layer(num_qubits,layers):
     provider = AQTProvider(os.environ['AQT_TOKEN'])
     backend = provider.get_backend("offline_simulator_noise")
     estimator = AQTEstimator(backend)
-    grad_estimator = ParamShiftEstimatorGradient(estimator= estimator)
+    grad_estimator = ParamShiftEstimatorGradient(estimator=estimator)
     feature_map = ZZFeatureMap(feature_dimension=num_qubits)
     ansatz = RealAmplitudes(num_qubits=num_qubits, reps=layers)
 
@@ -56,11 +56,9 @@ class QiskitPreprocessing(Module):
         input = self.linear1(input)
         input = self.activation(input)
         shp = input.shape
-        print(shp)
         input = reshape(input, (shp[0]*shp[1],shp[2]))
         input = self.qiskit(input)
         input = reshape(input, (shp[0],shp[1],-1))
         input = self.linear2(input)
         input = self.out_activation(input)
         return input
-

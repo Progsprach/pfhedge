@@ -39,6 +39,7 @@ from quantum_circuits import (
     ReuploadingQuantumCircuit,
 )
 from qmc_class import QiskitPreprocessing
+from aqt_nn import AQT_NN
 from clauses import add_cap_clause, add_knockin_clause, add_knockout_clause
 from cost_functions import CostFunction,ZeroCostFunction,RelativeCostFunction,AbsoluteCostFunction,MixedCostFunction
 
@@ -153,6 +154,7 @@ def make_model(config: dict, n_hedges: int, derivative: BaseDerivative) -> Modul
         "MultiLayerHybrid": MultiLayerHybrid,
         "PreprocessingCircuit": PreprocessingCircuit,
         "QiskitPreprocessing": QiskitPreprocessing,
+        "AQT_NN": AQT_NN,
     }
     model_type = options[config.get("type", "MultiLayerPerceptron")]
     NTB = config.get("NTB", True)
@@ -181,6 +183,13 @@ def make_model(config: dict, n_hedges: int, derivative: BaseDerivative) -> Modul
         model = MultiLayerHybrid(quantum=circuit, out_features=n_hedges, **cfg)
     if NTB:
         model = NoTransactionBandNet(derivative, model)
+    if model_type == AQT_NN:
+        n_qubits = config.get('n_qubits')
+        n_layers = config.get('n_layers')
+        in_features = config.get('in_features')
+        # print(f'n_layers: {n_layers}')
+        # print(f'in feats: {in_features}')
+        model = AQT_NN(n_qubits, n_layers, in_features)        
     return model
 
 

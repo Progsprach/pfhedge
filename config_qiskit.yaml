@@ -12,9 +12,10 @@ hedge:
   underlier: True
 model:
   NTB: False
-  type: QiskitPreprocessing
+  type: AQT_NN
+  # type: QiskitPreprocessing
   n_qubits: 4
-  n_layers: 9
+  n_layers: 7
   in_features: 2
 loss:
   type: ExpectedShortfall
@@ -24,8 +25,8 @@ features:
   - time_to_maturity
   # - volatility
 training:
-  n_epochs: 2
-  n_paths: 17 # 85
+  n_epochs: 100
+  n_paths: 10 # 85
   n_times: 1
 profit:
   n_paths: 5

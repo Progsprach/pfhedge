@@ -12,11 +12,9 @@ if __name__ == "__main__":
     n_paths = config['training']['n_paths']
     maturity = config['derivative']['maturity']
     n_time = round(250*maturity)+1
-    n_runs = n_paths*n_time*(2*n_layers*n_qubits+1)
+    n_runs = n_paths*n_time*(2*n_layers*n_qubits)
     print(n_runs)
-
-    print(n_time)
-    # exit(0)
+    
     load_dotenv()
     seaborn.set_style("whitegrid")
     reader = InputReader("config_qiskit.yaml")
