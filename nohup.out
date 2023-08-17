@@ -1,0 +1,175 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/pfhedge/main.py", line 2, in <module>
+    from InputReader import InputReader
+  File "/home/ubuntu/pfhedge/InputReader.py", line 2, in <module>
+    from config_utils import make_underlier, make_derivative, make_hedge, make_model, make_criterion
+  File "/home/ubuntu/pfhedge/config_utils.py", line 35, in <module>
+    from models import MultiLayerHybrid, NoTransactionBandNet, PreprocessingCircuit
+  File "/home/ubuntu/pfhedge/models.py", line 13, in <module>
+    from quantum_circuits import QuantumCircuit
+  File "/home/ubuntu/pfhedge/quantum_circuits.py", line 3, in <module>
+    from AQT_class import AQTDevice
+  File "/home/ubuntu/pfhedge/AQT_class.py", line 25, in <module>
+    from qiskit_aqt_provider import AQTProvider
+ModuleNotFoundError: No module named 'qiskit_aqt_provider'
+No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+{'in_features': 3}
+  0%|          | 0/200 [00:00<?, ?it/s]  0%|          | 0/200 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/numpy/core/fromnumeric.py", line 2007, in shape
+    result = a.shape
+AttributeError: 'list' object has no attribute 'shape'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/pfhedge/main.py", line 7, in <module>
+    handler.full_process()
+  File "/home/ubuntu/pfhedge/HedgeHandler.py", line 45, in full_process
+    history = self.fit()
+  File "/home/ubuntu/pfhedge/HedgeHandler.py", line 17, in fit
+    return self.hedger.fit(self.derivative,self.hedge,**self.fit_params)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 619, in fit
+    loss = compute_loss()
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 604, in compute_loss
+    return self.compute_loss(
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 484, in compute_loss
+    mean_loss = ensemble_mean(_get_loss, n_times=n_times)
+  File "/home/ubuntu/pfhedge/pfhedge/_utils/operations.py", line 33, in ensemble_mean
+    return function(*args, **kwargs)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 481, in _get_loss
+    portfolio = self.compute_portfolio(derivative, hedge=hedge)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 349, in compute_portfolio
+    unit = self.compute_hedge(derivative, hedge=hedge)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 315, in compute_hedge
+    output = self(input)  # (N, T, H)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1212, in _call_impl
+    result = forward_call(*input, **kwargs)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 205, in forward
+    return self.model(input)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ubuntu/pfhedge/models.py", line 130, in forward
+    X = self.quantum(X)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ubuntu/pfhedge/jaxlayer.py", line 59, in forward
+    return self.func.apply(inputs, self.weights)
+  File "/home/ubuntu/pfhedge/jaxlayer.py", line 24, in forward
+    return j2t(qnode(t2j(inputs), t2j(weights)))
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/traceback_util.py", line 166, in reraise_with_filtered_traceback
+    return fun(*args, **kwargs)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/pjit.py", line 208, in cache_miss
+    outs, out_flat, out_tree, args_flat = _python_pjit_helper(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/pjit.py", line 150, in _python_pjit_helper
+    args_flat, _, params, in_tree, out_tree, _ = infer_params_fn(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/api.py", line 301, in infer_params
+    return pjit.common_infer_params(pjit_info_args, *args, **kwargs)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/pjit.py", line 474, in common_infer_params
+    jaxpr, consts, canonicalized_out_shardings_flat = _pjit_jaxpr(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/pjit.py", line 935, in _pjit_jaxpr
+    jaxpr, final_consts, out_type = _create_pjit_jaxpr(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/linear_util.py", line 345, in memoized_fun
+    ans = call(fun, *args)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/pjit.py", line 888, in _create_pjit_jaxpr
+    jaxpr, global_out_avals, consts = pe.trace_to_jaxpr_dynamic(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/profiler.py", line 314, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/interpreters/partial_eval.py", line 2150, in trace_to_jaxpr_dynamic
+    jaxpr, out_avals, consts = trace_to_subjaxpr_dynamic(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/interpreters/partial_eval.py", line 2172, in trace_to_subjaxpr_dynamic
+    ans = fun.call_wrapped(*in_tracers_)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/linear_util.py", line 188, in call_wrapped
+    ans = self.f(*args, **dict(self.params, **kwargs))
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/numpy/vectorize.py", line 309, in wrapped
+    result = vectorized_func(*squeezed_args)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/traceback_util.py", line 166, in reraise_with_filtered_traceback
+    return fun(*args, **kwargs)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/api.py", line 1241, in vmap_f
+    out_flat = batching.batch(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/linear_util.py", line 188, in call_wrapped
+    ans = self.f(*args, **dict(self.params, **kwargs))
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/traceback_util.py", line 166, in reraise_with_filtered_traceback
+    return fun(*args, **kwargs)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/api.py", line 1241, in vmap_f
+    out_flat = batching.batch(
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/linear_util.py", line 188, in call_wrapped
+    ans = self.f(*args, **dict(self.params, **kwargs))
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/numpy/vectorize.py", line 137, in wrapped
+    out_shapes = map(jnp.shape, out if isinstance(out, tuple) else [out])
+  File "<__array_function__ internals>", line 180, in shape
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/numpy/core/fromnumeric.py", line 2009, in shape
+    result = asarray(a).shape
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/core.py", line 598, in __array__
+    raise TracerArrayConversionError(self)
+jax._src.traceback_util.UnfilteredStackTrace: jax.errors.TracerArrayConversionError: The numpy.ndarray conversion method __array__() was called on the JAX Tracer object Traced<ShapedArray(float32[])>with<BatchTrace(level=3/0)> with
+  val = Traced<ShapedArray(float32[101])>with<BatchTrace(level=2/0)> with
+    val = Traced<ShapedArray(float32[5000,101])>with<DynamicJaxprTrace(level=1/0)>
+    batch_dim = 0
+  batch_dim = 0
+This BatchTracer with object id 140309511213344 was created on line:
+  /home/ubuntu/pfhedge/jaxlayer.py:24 (forward)
+See https://jax.readthedocs.io/en/latest/errors.html#jax.errors.TracerArrayConversionError
+
+The stack trace below excludes JAX-internal frames.
+The preceding is the original exception that occurred, unmodified.
+
+--------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/pfhedge/main.py", line 7, in <module>
+    handler.full_process()
+  File "/home/ubuntu/pfhedge/HedgeHandler.py", line 45, in full_process
+    history = self.fit()
+  File "/home/ubuntu/pfhedge/HedgeHandler.py", line 17, in fit
+    return self.hedger.fit(self.derivative,self.hedge,**self.fit_params)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 619, in fit
+    loss = compute_loss()
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 604, in compute_loss
+    return self.compute_loss(
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 484, in compute_loss
+    mean_loss = ensemble_mean(_get_loss, n_times=n_times)
+  File "/home/ubuntu/pfhedge/pfhedge/_utils/operations.py", line 33, in ensemble_mean
+    return function(*args, **kwargs)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 481, in _get_loss
+    portfolio = self.compute_portfolio(derivative, hedge=hedge)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 349, in compute_portfolio
+    unit = self.compute_hedge(derivative, hedge=hedge)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 315, in compute_hedge
+    output = self(input)  # (N, T, H)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1212, in _call_impl
+    result = forward_call(*input, **kwargs)
+  File "/home/ubuntu/pfhedge/pfhedge/nn/modules/hedger.py", line 205, in forward
+    return self.model(input)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ubuntu/pfhedge/models.py", line 130, in forward
+    X = self.quantum(X)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ubuntu/pfhedge/jaxlayer.py", line 59, in forward
+    return self.func.apply(inputs, self.weights)
+  File "/home/ubuntu/pfhedge/jaxlayer.py", line 24, in forward
+    return j2t(qnode(t2j(inputs), t2j(weights)))
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/numpy/vectorize.py", line 309, in wrapped
+    result = vectorized_func(*squeezed_args)
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/jax/_src/numpy/vectorize.py", line 137, in wrapped
+    out_shapes = map(jnp.shape, out if isinstance(out, tuple) else [out])
+  File "<__array_function__ internals>", line 180, in shape
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/pfhedge-03XdVwlQ-py3.10/lib/python3.10/site-packages/numpy/core/fromnumeric.py", line 2009, in shape
+    result = asarray(a).shape
+jax.errors.TracerArrayConversionError: The numpy.ndarray conversion method __array__() was called on the JAX Tracer object Traced<ShapedArray(float32[])>with<BatchTrace(level=3/0)> with
+  val = Traced<ShapedArray(float32[101])>with<BatchTrace(level=2/0)> with
+    val = Traced<ShapedArray(float32[5000,101])>with<DynamicJaxprTrace(level=1/0)>
+    batch_dim = 0
+  batch_dim = 0
+This BatchTracer with object id 140309511213344 was created on line:
+  /home/ubuntu/pfhedge/jaxlayer.py:24 (forward)
+See https://jax.readthedocs.io/en/latest/errors.html#jax.errors.TracerArrayConversionError
+No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+{'in_features': 3}
+  0%|          | 0/200 [00:00<?, ?it/s]Loss=0.1223:   0%|          | 1/200 [00:20<1:07:41, 20.41s/it]Loss=0.1121:   1%|          | 2/200 [00:32<50:58, 15.45s/it]  Loss=0.1135:   2%|▏         | 3/200 [00:44<45:38, 13.90s/it]Loss=0.1202:   2%|▏         | 4/200 [00:56<42:56, 13.14s/it]Loss=0.1124:   2%|▎         | 5/200 [01:08<41:30, 12.77s/it]Loss=0.1187:   3%|▎         | 6/200 [01:20<40:25, 12.50s/it]Loss=0.1198:   4%|▎         | 7/200 [01:32<39:43, 12.35s/it]Loss=0.1162:   4%|▍         | 8/200 [01:44<39:07, 12.23s/it]Loss=0.1149:   4%|▍         | 9/200 [01:56<38:43, 12.16s/it]Loss=0.1067:   5%|▌         | 10/200 [02:08<38:17, 12.09s/it]Loss=0.1108:   6%|▌         | 11/200 [02:20<38:04, 12.09s/it]Loss=0.1046:   6%|▌         | 12/200 [02:32<37:49, 12.07s/it]Loss=0.1138:   6%|▋         | 13/200 [02:44<37:34, 12.05s/it]Loss=0.1073:   7%|▋         | 14/200 [02:56<37:18, 12.04s/it]Loss=0.1114:   8%|▊         | 15/200 [03:08<37:10, 12.06s/it]Loss=0.1105:   8%|▊         | 16/200 [03:20<36:54, 12.03s/it]Loss=0.1031:   8%|▊         | 17/200 [03:32<36:39, 12.02s/it]Loss=0.1032:   9%|▉         | 18/200 [03:44<36:27, 12.02s/it]Loss=0.1045:  10%|▉         | 19/200 [03:56<36:15, 12.02s/it]Loss=0.1093:  10%|█         | 20/200 [04:08<36:05, 12.03s/it]Loss=0.1031:  10%|█         | 21/200 [04:20<35:53, 12.03s/it]Loss=0.0989:  11%|█         | 22/200 [04:32<35:45, 12.05s/it]Loss=0.1056:  12%|█▏        | 23/200 [04:44<35:31, 12.04s/it]Loss=0.1057:  12%|█▏        | 24/200 [04:56<35:20, 12.05s/it]Loss=0.1008:  12%|█▎        | 25/200 [05:09<35:09, 12.05s/it]Loss=0.0959:  13%|█▎        | 26/200 [05:21<34:59, 12.06s/it]Loss=0.0993:  14%|█▎        | 27/200 [05:33<34:44, 12.05s/it]Loss=0.0940:  14%|█▍        | 28/200 [05:45<34:31, 12.05s/it]Loss=0.0986:  14%|█▍        | 29/200 [05:57<34:17, 12.03s/it]Loss=0.1001:  15%|█▌        | 30/200 [06:09<34:04, 12.03s/it]Loss=0.0985:  16%|█▌        | 31/200 [06:21<33:50, 12.01s/it]Loss=0.0939:  16%|█▌        | 32/200 [06:33<33:37, 12.01s/it]Loss=0.0958:  16%|█▋        | 33/200 [06:45<33:29, 12.03s/it]Loss=0.0997:  17%|█▋        | 34/200 [06:57<33:18, 12.04s/it]Loss=0.0960:  18%|█▊        | 35/200 [07:09<33:05, 12.03s/it]Loss=0.0990:  18%|█▊        | 36/200 [07:21<32:55, 12.04s/it]Loss=0.1023:  18%|█▊        | 37/200 [07:33<32:43, 12.05s/it]Loss=0.0924:  19%|█▉        | 38/200 [07:45<32:29, 12.03s/it]Loss=0.0991:  20%|█▉        | 39/200 [07:57<32:16, 12.03s/it]Loss=0.0928:  20%|██        | 40/200 [08:09<32:07, 12.05s/it]Loss=0.0984:  20%|██        | 41/200 [08:21<31:56, 12.05s/it]Loss=0.0949:  21%|██        | 42/200 [08:33<31:41, 12.03s/it]Loss=0.0954:  22%|██▏       | 43/200 [08:45<31:28, 12.03s/it]Loss=0.0887:  22%|██▏       | 44/200 [08:57<31:16, 12.03s/it]Loss=0.0999:  22%|██▎       | 45/200 [09:09<31:03, 12.02s/it]Loss=0.0984:  23%|██▎       | 46/200 [09:21<30:52, 12.03s/it]Loss=0.0890:  24%|██▎       | 47/200 [09:33<30:37, 12.01s/it]Loss=0.0951:  24%|██▍       | 48/200 [09:45<30:30, 12.04s/it]Loss=0.0913:  24%|██▍       | 49/200 [09:57<30:16, 12.03s/it]Loss=0.0926:  25%|██▌       | 50/200 [10:09<30:03, 12.03s/it]Loss=0.0936:  26%|██▌       | 51/200 [10:21<29:53, 12.04s/it]Loss=0.0928:  26%|██▌       | 52/200 [10:33<29:42, 12.05s/it]Loss=0.0880:  26%|██▋       | 53/200 [10:46<29:31, 12.05s/it]Loss=0.0929:  27%|██▋       | 54/200 [10:58<29:18, 12.05s/it]Loss=0.0899:  28%|██▊       | 55/200 [11:10<29:05, 12.04s/it]Loss=0.0872:  28%|██▊       | 56/200 [11:22<28:52, 12.03s/it]Loss=0.0907:  28%|██▊       | 57/200 [11:34<28:38, 12.02s/it]Loss=0.0900:  29%|██▉       | 58/200 [11:46<28:28, 12.03s/it]Loss=0.0926:  30%|██▉       | 59/200 [11:58<28:20, 12.06s/it]Loss=0.0894:  30%|███       | 60/200 [12:10<28:05, 12.04s/it]Loss=0.0886:  30%|███       | 61/200 [12:22<27:51, 12.03s/it]Loss=0.0862:  31%|███       | 62/200 [12:34<27:40, 12.03s/it]Loss=0.0874:  32%|███▏      | 63/200 [12:46<27:29, 12.04s/it]Loss=0.0902:  32%|███▏      | 64/200 [12:58<27:16, 12.03s/it]Loss=0.0878:  32%|███▎      | 65/200 [13:10<27:05, 12.04s/it]Loss=0.0869:  33%|███▎      | 66/200 [13:22<26:49, 12.01s/it]Loss=0.0903:  34%|███▎      | 67/200 [13:34<26:38, 12.02s/it]Loss=0.0902:  34%|███▍      | 68/200 [13:46<26:26, 12.02s/it]Loss=0.0845:  34%|███▍      | 69/200 [13:58<26:15, 12.02s/it]Loss=0.0887:  35%|███▌      | 70/200 [14:10<26:02, 12.02s/it]Loss=0.0891:  36%|███▌      | 71/200 [14:22<25:53, 12.04s/it]Loss=0.0885:  36%|███▌      | 72/200 [14:34<25:41, 12.05s/it]Loss=0.0897:  36%|███▋      | 73/200 [14:46<25:27, 12.03s/it]Loss=0.0888:  37%|███▋      | 74/200 [14:58<25:16, 12.04s/it]Loss=0.0883:  38%|███▊      | 75/200 [15:10<25:05, 12.04s/it]Loss=0.0886:  38%|███▊      | 76/200 [15:22<24:50, 12.02s/it]Loss=0.0878:  38%|███▊      | 77/200 [15:34<24:39, 12.03s/it]Loss=0.0915:  39%|███▉      | 78/200 [15:46<24:26, 12.02s/it]Loss=0.0871:  40%|███▉      | 79/200 [15:58<24:15, 12.03s/it]Loss=0.0883:  40%|████      | 80/200 [16:10<24:01, 12.02s/it]Loss=0.0920:  40%|████      | 81/200 [16:22<23:48, 12.01s/it]Loss=0.0881:  41%|████      | 82/200 [16:34<23:39, 12.03s/it]Loss=0.0935:  42%|████▏     | 83/200 [16:46<23:24, 12.01s/it]Loss=0.0825:  42%|████▏     | 84/200 [16:58<23:15, 12.03s/it]Loss=0.0872:  42%|████▎     | 85/200 [17:10<23:03, 12.03s/it]Loss=0.0844:  43%|████▎     | 86/200 [17:22<22:53, 12.05s/it]Loss=0.0847:  44%|████▎     | 87/200 [17:34<22:39, 12.03s/it]Loss=0.0851:  44%|████▍     | 88/200 [17:46<22:26, 12.02s/it]Loss=0.0861:  44%|████▍     | 89/200 [17:58<22:13, 12.01s/it]Loss=0.0852:  45%|████▌     | 90/200 [18:11<22:02, 12.02s/it]Loss=0.0899:  46%|████▌     | 91/200 [18:23<21:51, 12.03s/it]Loss=0.0869:  46%|████▌     | 92/200 [18:35<21:40, 12.05s/it]Loss=0.0863:  46%|████▋     | 93/200 [18:47<21:27, 12.03s/it]Loss=0.0861:  47%|████▋     | 94/200 [18:59<21:12, 12.01s/it]Loss=0.0862:  48%|████▊     | 95/200 [19:11<21:00, 12.00s/it]Loss=0.0881:  48%|████▊     | 96/200 [19:23<20:50, 12.02s/it]Loss=0.0933:  48%|████▊     | 97/200 [19:35<20:38, 12.03s/it]Loss=0.0863:  49%|████▉     | 98/200 [19:47<20:27, 12.03s/it]Loss=0.0886:  50%|████▉     | 99/200 [19:59<20:15, 12.04s/it]Loss=0.0855:  50%|█████     | 100/200 [20:11<20:03, 12.04s/it]Loss=0.0893:  50%|█████     | 101/200 [20:23<19:51, 12.04s/it]Loss=0.0887:  51%|█████     | 102/200 [20:35<19:39, 12.03s/it]Loss=0.0845:  52%|█████▏    | 103/200 [20:47<19:27, 12.04s/it]Loss=0.0845:  52%|█████▏    | 104/200 [20:59<19:17, 12.06s/it]Loss=0.0859:  52%|█████▎    | 105/200 [21:11<19:05, 12.06s/it]Loss=0.0860:  53%|█████▎    | 106/200 [21:23<18:54, 12.07s/it]Loss=0.0883:  54%|█████▎    | 107/200 [21:35<18:42, 12.07s/it]Loss=0.0851:  54%|█████▍    | 108/200 [21:47<18:30, 12.07s/it]Loss=0.0880:  55%|█████▍    | 109/200 [21:59<18:19, 12.08s/it]Loss=0.0841:  55%|█████▌    | 110/200 [22:12<18:07, 12.08s/it]Loss=0.0859:  56%|█████▌    | 111/200 [22:24<17:54, 12.07s/it]Loss=0.0890:  56%|█████▌    | 112/200 [22:36<17:40, 12.05s/it]Loss=0.0850:  56%|█████▋    | 113/200 [22:48<17:28, 12.06s/it]Loss=0.0891:  57%|█████▋    | 114/200 [23:00<17:16, 12.06s/it]Loss=0.0856:  57%|█████▊    | 115/200 [23:12<17:04, 12.05s/it]Loss=0.0867:  58%|█████▊    | 116/200 [23:24<16:53, 12.06s/it]Loss=0.0848:  58%|█████▊    | 117/200 [23:36<16:38, 12.03s/it]Loss=0.0851:  59%|█████▉    | 118/200 [23:48<16:25, 12.02s/it]Loss=0.0861:  60%|█████▉    | 119/200 [24:00<16:13, 12.02s/it]Loss=0.0897:  60%|██████    | 120/200 [24:12<16:03, 12.04s/it]Loss=0.0872:  60%|██████    | 121/200 [24:24<15:51, 12.04s/it]Loss=0.0892:  61%|██████    | 122/200 [24:36<15:38, 12.04s/it]Loss=0.0895:  62%|██████▏   | 123/200 [24:48<15:26, 12.04s/it]Loss=0.0837:  62%|██████▏   | 124/200 [25:00<15:16, 12.05s/it]Loss=0.0869:  62%|██████▎   | 125/200 [25:12<15:03, 12.05s/it]Loss=0.0883:  63%|██████▎   | 126/200 [25:24<14:51, 12.05s/it]Loss=0.0853:  64%|██████▎   | 127/200 [25:36<14:37, 12.03s/it]Loss=0.0880:  64%|██████▍   | 128/200 [25:48<14:25, 12.03s/it]Loss=0.0884:  64%|██████▍   | 129/200 [26:00<14:15, 12.05s/it]Loss=0.0885:  65%|██████▌   | 130/200 [26:12<14:04, 12.06s/it]Loss=0.0893:  66%|██████▌   | 131/200 [26:24<13:50, 12.04s/it]Loss=0.0852:  66%|██████▌   | 132/200 [26:36<13:37, 12.02s/it]Loss=0.0827:  66%|██████▋   | 133/200 [26:48<13:26, 12.03s/it]Loss=0.0855:  67%|██████▋   | 134/200 [27:00<13:13, 12.03s/it]Loss=0.0848:  68%|██████▊   | 135/200 [27:12<13:01, 12.03s/it]Loss=0.0870:  68%|██████▊   | 136/200 [27:24<12:49, 12.03s/it]Loss=0.0834:  68%|██████▊   | 137/200 [27:36<12:36, 12.00s/it]Loss=0.0863:  69%|██████▉   | 138/200 [27:48<12:24, 12.01s/it]Loss=0.0892:  70%|██████▉   | 139/200 [28:00<12:13, 12.02s/it]Loss=0.0859:  70%|███████   | 140/200 [28:13<12:02, 12.04s/it]Loss=0.0828:  70%|███████   | 141/200 [28:25<11:51, 12.05s/it]Loss=0.0886:  71%|███████   | 142/200 [28:37<11:38, 12.04s/it]Loss=0.0876:  72%|███████▏  | 143/200 [28:49<11:26, 12.05s/it]Loss=0.0840:  72%|███████▏  | 144/200 [29:01<11:14, 12.05s/it]Loss=0.0885:  72%|███████▎  | 145/200 [29:13<11:02, 12.05s/it]Loss=0.0898:  73%|███████▎  | 146/200 [29:25<10:49, 12.04s/it]Loss=0.0840:  74%|███████▎  | 147/200 [29:37<10:37, 12.03s/it]Loss=0.0858:  74%|███████▍  | 148/200 [29:49<10:25, 12.03s/it]Loss=0.0871:  74%|███████▍  | 149/200 [30:01<10:14, 12.04s/it]Loss=0.0853:  75%|███████▌  | 150/200 [30:13<10:02, 12.04s/it]Loss=0.0852:  76%|███████▌  | 151/200 [30:25<09:51, 12.06s/it]Loss=0.0882:  76%|███████▌  | 152/200 [30:37<09:38, 12.05s/it]Loss=0.0875:  76%|███████▋  | 153/200 [30:49<09:26, 12.05s/it]Loss=0.0845:  77%|███████▋  | 154/200 [31:01<09:14, 12.05s/it]Loss=0.0856:  78%|███████▊  | 155/200 [31:13<09:01, 12.03s/it]Loss=0.0872:  78%|███████▊  | 156/200 [31:25<08:50, 12.05s/it]Loss=0.0855:  78%|███████▊  | 157/200 [31:37<08:38, 12.05s/it]Loss=0.0869:  79%|███████▉  | 158/200 [31:49<08:25, 12.02s/it]Loss=0.0879:  80%|███████▉  | 159/200 [32:01<08:13, 12.04s/it]Loss=0.0850:  80%|████████  | 160/200 [32:13<08:02, 12.05s/it]Loss=0.0886:  80%|████████  | 161/200 [32:25<07:50, 12.05s/it]Loss=0.0827:  81%|████████  | 162/200 [32:38<07:37, 12.05s/it]Loss=0.0863:  82%|████████▏ | 163/200 [32:50<07:26, 12.06s/it]Loss=0.0890:  82%|████████▏ | 164/200 [33:02<07:13, 12.05s/it]Loss=0.0888:  82%|████████▎ | 165/200 [33:14<07:01, 12.05s/it]Loss=0.0875:  83%|████████▎ | 166/200 [33:26<06:50, 12.06s/it]Loss=0.0861:  84%|████████▎ | 167/200 [33:38<06:37, 12.06s/it]Loss=0.0850:  84%|████████▍ | 168/200 [33:50<06:25, 12.04s/it]Loss=0.0826:  84%|████████▍ | 169/200 [34:02<06:13, 12.05s/it]Loss=0.0890:  85%|████████▌ | 170/200 [34:14<06:01, 12.06s/it]Loss=0.0853:  86%|████████▌ | 171/200 [34:26<05:49, 12.05s/it]Loss=0.0891:  86%|████████▌ | 172/200 [34:38<05:37, 12.06s/it]Loss=0.0882:  86%|████████▋ | 173/200 [34:50<05:25, 12.06s/it]Loss=0.0889:  87%|████████▋ | 174/200 [35:02<05:13, 12.05s/it]Loss=0.0876:  88%|████████▊ | 175/200 [35:14<05:01, 12.06s/it]Loss=0.0868:  88%|████████▊ | 176/200 [35:26<04:49, 12.05s/it]Loss=0.0861:  88%|████████▊ | 177/200 [35:38<04:37, 12.05s/it]Loss=0.0868:  89%|████████▉ | 178/200 [35:50<04:24, 12.04s/it]Loss=0.0861:  90%|████████▉ | 179/200 [36:02<04:12, 12.03s/it]Loss=0.0857:  90%|█████████ | 180/200 [36:14<04:00, 12.03s/it]Loss=0.0872:  90%|█████████ | 181/200 [36:26<03:48, 12.04s/it]Loss=0.0830:  91%|█████████ | 182/200 [36:39<03:36, 12.04s/it]Loss=0.0886:  92%|█████████▏| 183/200 [36:51<03:24, 12.04s/it]Loss=0.0900:  92%|█████████▏| 184/200 [37:03<03:13, 12.06s/it]Loss=0.0849:  92%|█████████▎| 185/200 [37:15<03:00, 12.05s/it]Loss=0.0903:  93%|█████████▎| 186/200 [37:27<02:48, 12.06s/it]Loss=0.0844:  94%|█████████▎| 187/200 [37:39<02:36, 12.06s/it]Loss=0.0894:  94%|█████████▍| 188/200 [37:51<02:24, 12.04s/it]Loss=0.0889:  94%|█████████▍| 189/200 [38:03<02:12, 12.05s/it]Loss=0.0836:  95%|█████████▌| 190/200 [38:15<02:00, 12.05s/it]Loss=0.0868:  96%|█████████▌| 191/200 [38:27<01:48, 12.02s/it]Loss=0.0883:  96%|█████████▌| 192/200 [38:39<01:36, 12.02s/it]Loss=0.0861:  96%|█████████▋| 193/200 [38:51<01:24, 12.03s/it]Loss=0.0879:  97%|█████████▋| 194/200 [39:03<01:12, 12.02s/it]Loss=0.0920:  98%|█████████▊| 195/200 [39:15<01:00, 12.02s/it]Loss=0.0889:  98%|█████████▊| 196/200 [39:27<00:48, 12.02s/it]Loss=0.0858:  98%|█████████▊| 197/200 [39:39<00:36, 12.02s/it]Loss=0.0874:  99%|█████████▉| 198/200 [39:51<00:24, 12.02s/it]Loss=0.0847: 100%|█████████▉| 199/200 [40:03<00:12, 12.02s/it]Loss=0.0862: 100%|██████████| 200/200 [40:15<00:00, 12.03s/it]Loss=0.0862: 100%|██████████| 200/200 [40:15<00:00, 12.08s/it]
+0.0884212926030159
+{'Whalley-Wilmott': 0.04545588046312332, 'Black-Scholes': 0.026277977973222733, 'No Hedge': 0.14405125379562378}

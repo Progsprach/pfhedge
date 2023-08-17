@@ -146,10 +146,4 @@ cython_debug/
 # Local testing files
 example_*
 
-# Torch backups
-*.pth
-
-# Figs
-*.png
-
 Results/
