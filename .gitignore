@@ -148,3 +148,9 @@ example_*
 
 #Config file
 config.yaml
+
+# Torch backups
+*.pth
+
+# Figs
+*.png

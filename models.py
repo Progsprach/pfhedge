@@ -15,7 +15,7 @@ from torch.nn import Module
 from torch.nn import ReLU
 from torch.nn import Sequential
 from torch.nn.parameter import Parameter
-from quantum_circuits import QuantumCircuit
+from quantum_circuits import QuantumCircuit, SimpleQuantumCircuit
 
 
 from pfhedge.nn import BlackScholes
@@ -58,7 +58,6 @@ class MultiLayerHybrid(Sequential):
         layers.append(deepcopy(out_activation))
 
         super().__init__(*layers)
-
 
 
 class NoTransactionBandNet(Module):
@@ -114,3 +113,21 @@ class NoPreprocessingCircuit(Sequential):
         layers.append(Linear(quantum.n_outputs,out_features))
         layers.append(deepcopy(out_activation))
         super().__init__(*layers)
+        
+        
+class AQT_NN(Module):
+    def __init__(self, quantum, in_features):
+        super().__init__()
+        circuit = quantum
+        self.linear1 = Linear(in_features=in_features, out_features=quantum.n_inputs)
+        self.quantum = JaxLayer(circuit)
+        self.linear2 = Linear(in_features=quantum.n_outputs, out_features=1)
+        self.activation = ReLU()
+        self.out_activation = Identity()
+        
+    def forward(self, X):
+        X = self.activation(self.linear1(X))
+        X = self.quantum(X)
+        X = self.out_activation(self.linear2(X))
+        return X
+        

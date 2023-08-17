@@ -1,3 +1,4 @@
+import torch
 from typing import List
 import matplotlib.pyplot as plt
 from pfhedge.instruments import BaseDerivative, BaseInstrument
@@ -42,6 +43,7 @@ class HedgeHandler:
         return output
     def full_process(self):
         history = self.fit()
+        torch.save(self.hedger.state_dict(), 'model_weights.pth')
         pnl = self.profit()
         bench = self.benchmark()
         print(self.eval(pnl))

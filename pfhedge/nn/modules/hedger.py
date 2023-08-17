@@ -612,7 +612,8 @@ class Hedger(Module):
         history = []
         progress = tqdm(range(n_epochs), disable=not verbose, **tqdm_kwargs)
         for _ in progress:
-            # Compute training loss and backpropagate
+            # Compute training loss and backpropagate            
+            
             self.train()
             optimizer.zero_grad()
             loss = compute_loss()
