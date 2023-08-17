@@ -17,16 +17,22 @@ underlier = BrownianStock(cost=RelativeCostFunction(cost=3.0e-4))
 derivative = EuropeanOption(underlier, strike=1.1, maturity=maturity)
 
 
+# TODO: Find way to read in fit parameters from jax trained network
+backup_data = torch.load('model_weights.pth')
+
+
 criterion = ExpectedShortfall(0.1)
 model = AQT_NN(n_qubits, n_layers, in_features)
+model.load_state_dict(backup_data)
 hedger = Hedger(model, ["log_moneyness", "time_to_maturity", "volatility"], criterion)
 
 
-# TODO: Find way to read in fit parameters from jax trained network
-# weights = model.state_dict()
-# torch.save(weights, 'weights.pth')
-model.load_state_dict(torch.load('weights.pth'))
+print(model.state_dict())
 
 
-pnl = criterion(hedger.compute_pnl(derivative, n_paths=10)).item()
-print(pnl)
+
+
+
+
+# pnl = criterion(hedger.compute_pnl(derivative, n_paths=10)).item()
+# print(pnl)
