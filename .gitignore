@@ -159,3 +159,6 @@ testing*
 
 # vscode .json files
 .vscode/
+
+# backup data from torch training
+*.pth
