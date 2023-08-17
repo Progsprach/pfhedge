@@ -146,11 +146,10 @@ cython_debug/
 # Local testing files
 example_*
 
-#Config file
-config.yaml
-
 # Torch backups
 *.pth
 
 # Figs
 *.png
+
+Results/
