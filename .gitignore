@@ -152,5 +152,8 @@ config.yaml
 # .png files 
 *.png
 
-# Backup parameters
+# Backup pickles
 Backup_Params/
+
+# Vscode configurations
+.vscode/

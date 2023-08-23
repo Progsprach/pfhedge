@@ -1,3 +1,5 @@
+import os
+
 from typing import Any
 from typing import Callable
 from typing import List
@@ -520,6 +522,7 @@ class Hedger(Module):
         validation: bool = True,
         tqdm_kwargs: dict = None,
         optimizer_kwargs: dict = None,
+        checkpoint_file: Optional[str] = None,
     ) -> Optional[List[float]]:
         """Fit the hedging model to hedge a given derivative.
 
@@ -611,7 +614,9 @@ class Hedger(Module):
 
         history = []
         progress = tqdm(range(n_epochs), disable=not verbose, **tqdm_kwargs)
-        path = './Backup_Params/checkpoint.pt'
+        folder = './Backup_Params/'
+        if not os.path.isdir(folder) and checkpoint_file:
+            os.mkdir(folder)
         for _ in progress:
             # Compute training loss and backpropagate
             self.train()
@@ -625,8 +630,11 @@ class Hedger(Module):
                 self.eval()
                 loss = compute_loss(n_times=n_times, enable_grad=False)
                 history.append(loss.item())
-                torch.save(self.state_dict(), path)
                 progress.desc = "Loss=" + _format_float(float(loss.item()))
+                
+            if checkpoint_file:
+                path = os.path.join(folder, checkpoint_file)
+                torch.save(self.state_dict(), path)
 
         return history if validation else None
 
