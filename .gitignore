@@ -151,3 +151,6 @@ config.yaml
 
 # .png files
 *.png
+
+# setting files
+.vscode/
