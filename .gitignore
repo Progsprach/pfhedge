@@ -146,4 +146,16 @@ cython_debug/
 # Local testing files
 example_*
 
+#Config file
+config.yaml
+
+# Results
 Results/
+
+# .png files
+*.png
+
+testing*
+
+# vscode .json files
+.vscode/

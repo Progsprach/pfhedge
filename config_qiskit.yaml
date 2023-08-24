@@ -1,0 +1,39 @@
+underlier:
+  type: BrownianStock
+  cost:
+    type: RelativeCostFunction
+    cost: 3.0e-4
+derivative:
+  type: EuropeanOption
+  call: True
+  strike: 1.1
+  maturity: 0.035
+hedge:
+  underlier: True
+model:
+  NTB: False
+  type: AQT_NN
+  # type: QiskitPreprocessing
+  n_qubits: 4
+  n_layers: 7
+  in_features: 2
+loss:
+  type: ExpectedShortfall
+  p: 0.1
+features:
+  - log_moneyness
+  - time_to_maturity
+  # - volatility
+training:
+  n_epochs: 100
+  n_paths: 10 # 85
+  n_times: 1
+profit:
+  n_paths: 5
+criterion:
+  type: ExpectedShortfall
+  p: 0.1
+benchmark:
+  NoHedge: True
+  WhalleyWilmott: True
+  BlackScholes: True
