@@ -4,12 +4,8 @@ from aqt_layer import QuantumLayer
 from qiskit_aqt_provider import AQTProvider
 
 
-provider = AQTProvider(os.environ['AQT_TOKEN'])
-backend = provider.get_backend("offline_simulator_no_noise")
-
-
 class AQT_NN(Module):
-    def __init__(self, n_qubits, n_layers, in_features, n_averages=100, shots=200):
+    def __init__(self, n_qubits, n_layers, in_features, n_averages, backend, shots=200):
         super().__init__()
         self.linear1 = Linear(in_features=in_features, out_features=n_qubits)
         self.quantum = QuantumLayer(n_qubits, n_layers, backend, n_averages, shots)

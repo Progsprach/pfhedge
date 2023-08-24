@@ -60,6 +60,7 @@ class QuantumLayer(nn.Module):
     def forward(self, X):
         params = self.params.detach().numpy()
         n1, n2, n3 = X.shape
+        n = n1*n2
         out = np.zeros((n1, n2, n3))
         for i in range(n1):
             for j in range(n2):
@@ -71,6 +72,7 @@ class QuantumLayer(nn.Module):
                     expvals += get_expvals(self.n_qubits, self.shots, counts)
                 expvals /= self.n_averages
                 out[i, j, :] = get_expvals(self.n_qubits, self.shots, counts)
+            print(f'Done with path {i}')
         return torch.Tensor(out)
     
     
