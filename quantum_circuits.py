@@ -97,3 +97,21 @@ class ReuploadingQuantumCircuit(QuantumCircuit):
                 qml.BasicEntanglerLayers(weights[i*n_layers:(i+1)*n_layers,...], wires=range(n_qubits))
             return [qml.expval(qml.PauliZ(wires=i)) for i in range(n_measurements)]
         return qnode
+    
+
+# Code example
+if __name__ == '__main__':
+    n_qubits = 5
+    n_layers = 5
+    rotation_matrix = [['x', 'y', 'x', 'y', 'x'],
+                       ['y', 'x', 'y', 'x', 'y'],
+                       ['x', 'y', 'x', 'y', 'x'],
+                       ['y', 'x', 'y', 'x', 'y'],
+                       ['x', 'y', 'x', 'y', 'x']]
+    import numpy as np
+    quantum = SimpleQuantumCircuit(n_qubits=n_qubits, n_layers=n_layers, rotation_matrix=rotation_matrix)
+    inputs = np.random.randn(n_layers)
+    weights = np.random.randn(n_layers, n_qubits)
+    drawing = qml.draw(quantum.qnode)(inputs, weights)
+    print(drawing)
+

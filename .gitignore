@@ -147,10 +147,22 @@ cython_debug/
 example_*
 
 #Config file
-config.yaml
+# config.yaml
 
 # .png files
 *.png
 
-# setting files
-.vscode/
+# Output file
+output.txt
+
+# .json files
+*.json
+
+# Stored data from experiment
+Experimental_Results/
+
+# Results
+results.txt
+Results/
+
+
