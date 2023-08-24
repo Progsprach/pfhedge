@@ -1,10 +1,11 @@
-from typing import List
+import os
+from typing import List, Optional
 import matplotlib.pyplot as plt
 from pfhedge.instruments import BaseDerivative, BaseInstrument
 from pfhedge.nn import Hedger, HedgeLoss, WhalleyWilmott, BlackScholes, Naked
 from plotting_library import make_training_diagram, make_pl_diagram, make_stock_diagram
 class HedgeHandler:
-    def __init__(self, hedger: Hedger, derivative: BaseDerivative, hedge: List[BaseInstrument], fit_params: dict, profit_params: dict, criterion: HedgeLoss, benchmark_params: dict):
+    def __init__(self, hedger: Hedger, derivative: BaseDerivative, hedge: List[BaseInstrument], fit_params: dict, profit_params: dict, criterion: HedgeLoss, benchmark_params: dict, backup_file: Optional[str] = None):
         self.hedger = hedger
         self.derivative = derivative
         self.hedge = hedge
@@ -12,6 +13,7 @@ class HedgeHandler:
         self.profit_params = profit_params
         self.criterion = criterion
         self.benchmark_params = benchmark_params
+        self.backup_file = backup_file
     def fit(self):
         return self.hedger.fit(self.derivative,self.hedge,**self.fit_params)
     def profit(self):
@@ -40,10 +42,12 @@ class HedgeHandler:
         for key in dictionary.keys():
             output[key] = self.eval(dictionary[key])
         return output
-    def full_process(self, backup=False):
-        if backup:
+    def full_process(self):
+        if self.backup_file:
             print('Loading backup')
-            self.hedger.load_backup('./Backup_Params/checkpoint.pt')
+            folder = './Backup_Params'
+            path = os.path.join(folder, self.backup_file)
+            self.hedger.load_backup(path)
         else:
             history = self.fit()
             training_fig = make_training_diagram(history)

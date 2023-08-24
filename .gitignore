@@ -147,13 +147,16 @@ cython_debug/
 example_*
 
 #Config file
-config.yaml
+# config.yaml
 
 # .png files 
 *.png
 
 # Backup pickles
-Backup_Params/
+# Backup_Params/
 
 # Vscode configurations
 .vscode/
+
+# Results
+Results/

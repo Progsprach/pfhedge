@@ -1,0 +1,38 @@
+underlier:
+  type: MertonJumpStock
+derivative:
+  type: LookbackOption
+  call: True
+  strike: 1.05
+  maturity: 0.4
+hedge:
+  underlier: True
+model:
+  NTB: False
+  type: MultiLayerHybrid
+  circuit:
+    type: SimpleQuantumCircuit
+    n_qubits: 3
+    n_layers: 2
+  n_units: 16
+  n_layers: 4
+loss:
+  type: ExpectedShortfall
+  p: 0.1
+training:
+  n_paths: 1000
+  n_epochs: 100
+  n_times: 1
+  checkpoint_file: checkpoints.pt
+  optimizer_kwargs:
+    lr: 1.0e-3
+profit:
+  n_paths: 5000
+criterion:
+  type: ExpectedShortfall
+  p: 0.1
+benchmark:
+  NoHedge: True
+  WhalleyWilmott: True
+handler:
+  backup_file: checkpoints.pt
