@@ -57,3 +57,19 @@ class JaxLayer(torch.nn.Module):
 
     def forward(self, inputs):
         return self.func.apply(inputs, self.weights)
+
+
+# Testing the code
+if __name__ == '__main__':
+    import numpy as np
+    from quantum_circuits import SimpleQuantumCircuit
+    circuit = SimpleQuantumCircuit()
+    jax_layer = JaxLayer(circuit)
+    n = circuit.n_inputs
+    print(n)
+    inputs = torch.ones(n)
+    weights = jax_layer.weights.detach().numpy()
+    output = jax_layer.forward(inputs)
+    print(output)
+    print()
+    print(weights)

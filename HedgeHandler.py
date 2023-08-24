@@ -1,3 +1,4 @@
+import os
 from typing import List
 import matplotlib.pyplot as plt
 from pfhedge.instruments import BaseDerivative, BaseInstrument
@@ -40,28 +41,39 @@ class HedgeHandler:
         for key in dictionary.keys():
             output[key] = self.eval(dictionary[key])
         return output
-    def full_process(self):
+    def full_process(self, path):
         history = self.fit()
         pnl = self.profit()
         bench = self.benchmark()
+
+        # import json
+        # stream = json.dumps(self.dict_eval(bench))
+        
+        # with open('./output.txt', 'w') as file:
+        #     file.write(str(self.eval(pnl)))
+        #     file.write('\n')
+        #     file.write(stream)
+        #     file.write('\n')
+
         print(self.eval(pnl))
         print(self.dict_eval(bench))
         training_fig = make_training_diagram(history)
-        training_fig.savefig('trainingdiagram.png')
+        training_fig.savefig(os.path.join(path, 'trainingdiagram.png'))
         plt.close(training_fig)
         pnl_fig = make_pl_diagram(pnl)
-        pnl_fig.savefig('pldiagram.png')
+        pnl_fig.savefig(os.path.join('pldiagram.png'))
         plt.close(pnl_fig)
         for key, value in bench.items():
             fig = make_pl_diagram(value)
-            fig.savefig(f'pl{(key[0:2].lower())}')
+            fig.savefig(os.path.join(path, f'pl{(key[0:2].lower())}'))
             plt.close(fig)
-    def stock_diagrams(self, number):
+        return self.eval(pnl)
+    def stock_diagrams(self, number, path):
         self.derivative.simulate(number)
         prices = self.derivative.underlier.spot
         for i in range(number):
             fig = make_stock_diagram(prices[i,...])
-            fig.savefig(f'stockdiagram{i}')
+            fig.savefig(os.path.join(path, f'stockdiagram{i}'))
             plt.close(fig)
 
         
