@@ -27,7 +27,8 @@ class InputReader:
         profit_params = self.config.get('profit',{})
         criterion = make_criterion(self.config.get('criterion',{}))
         benchmark_params = self.config.get('benchmark',{})
-        return HedgeHandler(hedger,derivative,hedge,fit_params,profit_params,criterion,benchmark_params)
+        handler_params = self.config.get('handler', {})
+        return HedgeHandler(hedger,derivative,hedge,fit_params,profit_params,criterion,benchmark_params, **handler_params)
     def load_multi_config(self) -> MultiHandler:
         underlier = make_underlier(self.config.get('underlier',{}))
         derivative = make_derivative(self.config.get('derivative',{}), underlier)
