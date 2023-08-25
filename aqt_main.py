@@ -20,7 +20,10 @@ backend = provider.get_backend("offline_simulator_no_noise")
 n_qubits = 5
 n_layers = 5
 in_features = 3
-maturity = 4
+maturity = 20/250
+n_averages = 1
+shots = 200
+n_paths = 10
 
 underlier = BrownianStock(cost=RelativeCostFunction(cost=3.0e-4))
 derivative = EuropeanOption(underlier, strike=1.1, maturity=maturity)
@@ -31,7 +34,7 @@ backup_data = torch.load('model_weights.pth')
 backup_data['quantum.params'] = backup_data.pop('quantum.weights')
 
 criterion = ExpectedShortfall(0.1)
-model = AQT_NN(n_qubits, n_layers, in_features, n_averages=1, backend=backend, shots=200)
+model = AQT_NN(n_qubits, n_layers, in_features, n_averages=1, backend=backend, shots=shots)
 
 # Feed jax trained parameters into model
 model.load_state_dict(backup_data)
@@ -42,7 +45,7 @@ start = time.time()
 # Performs n_batch*n_averages*shots circuit executions, where n_batch=250*maturity*n_paths
 # A run for a batch of size 2 with 5 by 5 quantum circuit, 100 averages and 200 shots should
 # roughly have a runtime of 7.5 seconds on Qiskit and  10 seconds on AQT (both simulators)
-pnl = criterion(hedger.compute_pnl(derivative, n_paths=1)).item()
+pnl = criterion(hedger.compute_pnl(derivative, n_paths=n_paths)).item()
 
 duration = time.time()-start
 print(f'The execution lasted for {duration} seconds.')

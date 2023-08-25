@@ -9,7 +9,7 @@ derivative:
   type: EuropeanOption
   call: True
   strike: 1.1
-  maturity: 0.4
+  maturity: 0.08
 hedge:
   underlier: True
 model:
@@ -36,11 +36,11 @@ features:
   - volatility
 training:
   # backup: True
-  n_paths: 5000
-  n_epochs: 200
+  n_paths: 100
+  n_epochs: 100
   n_times: 1
 profit:
-  n_paths: 5000
+  n_paths: 1
 criterion:
   type: ExpectedShortfall
   p: 0.1
